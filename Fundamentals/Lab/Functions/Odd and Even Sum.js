@@ -19,10 +19,6 @@ function oddEven(number) {
     }
     return [evenSum, oddSum];
   }
-
- 
-
- // console.log(`Odd sum = ${oddSum}, Even sum = ${evenSum}`);
 }
 
 oddEven(1000435);

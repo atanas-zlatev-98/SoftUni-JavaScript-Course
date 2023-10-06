@@ -4,14 +4,17 @@ function loadingBar(percent) {
   function calc(number) {
     let placeholder = "";
     let devide = number / 10;
+    
     for (let i = 1; i <= 10; i++) {
       let currentIndex = i;
+
       if (currentIndex <= devide) {
         placeholder += "%";
       } else {
         placeholder += ".";
       }
     }
+    
    return placeholder;
   }
 
@@ -24,5 +27,5 @@ function loadingBar(percent) {
   
 }
 
-//loadingBar(50);
-loadingBar(90);
+loadingBar(50);
+loadingBar(50);

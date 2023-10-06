@@ -1,5 +1,8 @@
-function smallest(num1,num2,num3){
+function smallestNumber(num1,num2,num3){
 
+    let minNumber = Math.min(num1,num2,num3);
+    console.log(minNumber);
 
 }
-smallest(2,5,3);
+smallestNumber(2,5,3);
+smallestNumber(600,342,123);
