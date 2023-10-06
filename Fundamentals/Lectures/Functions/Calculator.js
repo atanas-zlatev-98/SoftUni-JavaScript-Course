@@ -1,38 +1,32 @@
-const calculator = (num1, num2, operator) => {
+
+function calculator(a, b, operator){
+
+let multiply = (a, b) => {return a * b};
+let divide = (a, b) => {return a / b};
+let add = (a, b) => {return a + b};
+let subtract = (a, b) => {return a - b};
+
+  let result;
   switch (operator) {
     case "multiply":
-      multiply(num1, num2);
+      result = multiply(a, b);
       break;
     case "divide":
-        divide(num1, num2);
+      result = divide(a, b);
       break;
     case "add":
-      add(num1, num2);
+      result = add(a, b);
       break;
     case "subtract":
-        subtract(num1, num2);
+      result = subtract(a, b);
       break;
     default:
       break;
   }
-};
-
-const multiply = (num1, num2) => {
-  console.log(num1 * num2);
-};
-
-const divide = (num1, num2) => {
-  console.log(num1 / num2);
-};
-
-const add = (num1, num2) => {
-  console.log(num1 + num2);
-};
-const subtract = (num1, num2) => {
-  console.log(num1 - num2);
-};
+  console.log(result);
+}
 
 calculator(5, 5, "multiply");
-calculator(40,8,'divide');
+/*calculator(40,8,'divide');
 calculator(12,19,'add');
-calculator(50,13,'subtract');
+calculator(50,13,'subtract');*/
