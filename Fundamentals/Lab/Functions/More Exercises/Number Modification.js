@@ -1,21 +1,27 @@
 function modification(number) {
-    let numAsString = String(number);
-    let counter = 0;
-    let sum = 0;
-  
-    for (let i = 0; i <= numAsString.length; i++) {
-      counter++;
-      sum += Number(numAsString[i]);
-  
-      if (sum / counter < 5) {
-        if (counter >= numAsString.length) {
-          numAsString += "9";
-        }
-      } else {
-        break;
-      }
+
+    while (getAverage(number) < 5) {
+        number += '9';
     }
-    console.log(numAsString);
+
+    console.log(number);
+
+    function getSum(number) {
+
+        let numToString = number.toString();
+        let sum = 0;
+
+        for (let i = 0; i < numToString.length; i++) {
+            sum += Number(numToString[i]);
+        }
+
+        return sum;
+    }
+
+    function getAverage(num) {
+        return getSum(num) / num.toString().length;
+    }
+
   }
 modification(101);
 //modification(5835);
