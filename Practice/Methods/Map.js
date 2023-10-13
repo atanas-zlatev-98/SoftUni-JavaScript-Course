@@ -25,3 +25,9 @@ let findOff = array.map((x) => x % 2 !== 0);
 console.log(findOff);
 
 console.log("---------------");
+
+function increment(x){
+    return x + 1;
+}
+let incrementNums = map(array,increment);
+console.log(incrementNums);
