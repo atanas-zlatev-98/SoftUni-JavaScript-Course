@@ -1,4 +1,5 @@
 function guineaPig(arr) {
+  
   let quantityFood = Number(arr[0] * 1000);
   let quantityHay = Number(arr[1] * 1000);
   let quantityCover = Number(arr[2] * 1000);
@@ -22,7 +23,7 @@ function guineaPig(arr) {
     }
 
     if (dayCounter % 3 == 0) {
-      let cover = guineaWeight * 0.3333;
+      let cover = guineaWeight / 3;
       quantityCover -= cover;
     }
 
