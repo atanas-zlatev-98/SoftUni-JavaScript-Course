@@ -104,12 +104,12 @@ manOwar(["12>13>11>20>66",
 "Status",
 "Retire"]);
 
-manOwar(["2>3>4>5>2",
+/*manOwar(["2>3>4>5>2",
 "6>7>8>9>10>11",
 "20",
 "Status",
 "Fire 2 3",
 "Defend 0 4 11",
 "Repair 3 18",
-"Retire"]);
+"Retire"]);*/
 
