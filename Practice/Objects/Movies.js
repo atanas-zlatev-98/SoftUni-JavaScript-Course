@@ -1,5 +1,5 @@
 function movies(arr) {
-    
+
   let movies = [];
 
   for (let movie of arr) {
@@ -14,6 +14,7 @@ function movies(arr) {
       }
       movies.push(moviez);
     }else if(movie.includes('directedBy')){
+
         let command = movie.split(' directedBy ');
         let [movieName, directorName] = command;
 
@@ -36,11 +37,15 @@ function movies(arr) {
     }
   }
   for(let allMovies of movies) {
-    console.log(allMovies);
+
+    if(allMovies.name && allMovies.director && allMovies.date){
+        console.log(JSON.stringify(allMovies));
+    }
+   
   }
 }
 
-movies([
+/*movies([
   "addMovie Fast and Furious",
 
   "addMovie Godfather",
@@ -56,4 +61,11 @@ movies([
   "Batman onDate 01.08.2018",
 
   "Fast and Furious directedBy Rob Cohen",
-]);
+]);*/
+
+movies(["addMovie The Avengers",
+"addMovie Superman",
+"The Avengers directedBy Anthony Russo",
+"The Avengers onDate 30.07.2010",
+"Captain America onDate 30.07.2010",
+"Captain America directedBy Joe Russo"])
