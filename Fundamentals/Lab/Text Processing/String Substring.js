@@ -5,7 +5,7 @@ function strSubst(word,text){
     if(text.includes(word)){
         console.log(word);
     }else {
-        console.log(`${word} no found!`);
+        console.log(`${word} not found!`);
     }
 
 }

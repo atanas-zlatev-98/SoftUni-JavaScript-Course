@@ -1,5 +1,5 @@
 function revealWords(wordStr, text) {
-  let words = wordStr.split(" ");
+  let words = wordStr.split(", ");
 
   for (let word of words) {
     let count = word.length;
