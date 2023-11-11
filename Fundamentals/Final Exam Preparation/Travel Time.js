@@ -20,18 +20,19 @@ function travelTime(arr) {
 
   let sorted = Object.entries(places).sort((a, b) => a[0].localeCompare(b[0]));
 
-  sorted.map(([country, towns]) => {
-    
-    let finalString = `${country} -> `;
+  for(let [country,towns] of sorted){
 
     let sortedTowns = Object.entries(towns).sort((a, b) => a[1] - b[1]);
 
-    sortedTowns.map(([town, price]) => {
-      finalString += `${town} -> ${price} `;
-    });
+    let countryDestination = `${country} -> `;
 
-    console.log(finalString.trim());
-  });
+    sortedTowns.map(([town, price]) => {
+        countryDestination += `${town} -> ${price} `;
+      });
+
+    console.log(`${countryDestination}`);
+
+  }
 }
 
 travelTime([
