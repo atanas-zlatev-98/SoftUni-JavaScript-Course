@@ -1,15 +1,20 @@
 function plantDiscovery(arr) {
-  let n = arr.shift();
-
+  let n = Number(arr.shift());
   let plants = {};
 
   for (let i = 0; i < n; i++) {
-    let tokens = arr[i].split("<->");
-    let [plant, rarity] = tokens;
+    let currentPlant = arr[i].split("<->");
+
+    let [plantName, rarity] = currentPlant;
     rarity = Number(rarity);
 
-    plants[plant] = { plant, rarity, count: 0, rating: 0 };
+    plants[plantName] = {
+      rarity,
+      rating: 0,
+      count: 0,
+    };
   }
+
   for (let i = 0; i < n; i++) {
     arr.shift();
   }
@@ -19,12 +24,13 @@ function plantDiscovery(arr) {
 
     if (currentPlant.includes("Rate")) {
       let tokens = currentPlant.split("Rate: ")[1];
-      let currPlant = tokens.split(" - ");
 
-      let [plantName, plantRating] = currPlant;
+      let commands = tokens.split(" - ");
+
+      let [plantName, plantRating] = commands;
       plantRating = Number(plantRating);
 
-      if (plants.hasOwnProperty(plantName)) {
+      if (plantName in plants) {
         plants[plantName]["rating"] += plantRating;
         plants[plantName]["count"] += 1;
       } else {
@@ -32,37 +38,36 @@ function plantDiscovery(arr) {
       }
     } else if (currentPlant.includes("Update")) {
       let tokens = currentPlant.split("Update: ")[1];
-      let currPlant = tokens.split(" - ");
 
-      let [plantName, plantRarity] = currPlant;
+      let commands = tokens.split(" - ");
+
+      let [plantName, plantRarity] = commands;
       plantRarity = Number(plantRarity);
 
-      if (plants.hasOwnProperty(plantName)) {
+      if (plantName in plants) {
         plants[plantName]["rarity"] = plantRarity;
       } else {
         console.log("error");
       }
     } else if (currentPlant.includes("Reset")) {
-      let plantName = currentPlant.split("Reset: ")[1];
+      let plant = currentPlant.split("Reset: ")[1];
 
-      if (plants.hasOwnProperty(plantName)) {
-        plants[plantName]["rating"] = 0;
-        plants[plantName]["count"] = 0;
+      if (plant in plants) {
+        plants[plant]["rating"] = 0;
+        plants[plant]["count"] = 0;
       } else {
         console.log("error");
       }
     }
+
     arr.shift();
   }
 
   console.log(`Plants for the exhibition:`);
-
-  for (let key in plants) {
-    let average = plants[key]["rating"] / plants[key]["count"] || 0;
+  for (let [key, value] of Object.entries(plants)) {
+    let averageScore = value["rating"] / value["count"] || 0;
     console.log(
-      `- ${key}; Rarity: ${plants[key]["rarity"]}; Rating: ${average.toFixed(
-        2
-      )}`
+      `- ${key}; Rarity: ${value["rarity"]}; Rating: ${averageScore.toFixed(2)}`
     );
   }
 }
