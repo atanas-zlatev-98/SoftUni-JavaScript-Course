@@ -1,14 +1,21 @@
-function destinationMapper(str){
+function destinationMapper(str) {
+  let sentence = str;
 
-    let pattern = /(=|\/)(?<locationz>[A-Z][A-Za-z]{2,})\1/;
+  let pattern = /([=|\/])(?<destination>[A-Z][A-Za-z]{2,})\1/g;
 
-    let result = pattern.exec(str);
-    
+  let match = pattern.exec(sentence);
+  let destinations = [];
+  let travelPoints = 0;
 
-   for(let loc of result){
-    let locs = result.groups;
-    console.log(locs);
-   }
+  while (match !== null) {
+    let { destination } = match.groups;
+    destinations.push(destination);
+    travelPoints += destination.length;
 
+    match = pattern.exec(sentence);
+  }
+
+  console.log(`Destinations: ${destinations.join(', ')}`);
+  console.log(`Travel Points: ${travelPoints}`);
 }
-destinationMapper("=Hawai=/Cyprus/=Invalid/invalid==i5valid=/I5valid/=i=")
+destinationMapper("ThisIs some InvalidInput")
