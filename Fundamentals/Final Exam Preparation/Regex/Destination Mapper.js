@@ -2,7 +2,7 @@ function destinationMapper(str){
 
     let message = str;
 
-    let pattern = /([=|\/])(?<destination>[A-Z][A-Za-z]{3,})\1/g;
+    let pattern = /([=|\/])(?<destination>[A-Z][A-Za-z]{2,})\1/g;
 
     let match = pattern.exec(message);
     let travelPoints = 0;
