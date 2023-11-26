@@ -1,40 +1,29 @@
 function adAstra(arr){
-    let sentence = arr.shift();
-
+    let str = arr.shift();
+    let pattern = /([#|\|])(?<product>[A-Za-z\s]+)\1(?<expdate>\d{2}\/\d{2}\/\d{2})\1(?<calories>\d{1,5})\1/g;
     let totalCalories = 0;
-
-    let pattern = /(#|\|)(?<item>[A-Za-z\s]+)\1(?<date>\d{2}\/\d{2}\/\d{2})\1(?<calories>\d{1,5})\1/g;
-
-    let match = pattern.exec(sentence);
-
     let products = [];
+    let match = pattern.exec(str);
 
-    if(match){
-        
-        while(match !== null){
+    while(match !== null){
 
-            let {item,date,calories} = match.groups;
-            products.push(`Item: ${item}, Best before: ${date}, Nutrition: ${calories}`);
-            totalCalories += Number(calories);
+        let {product,expdate,calories} = match.groups;
 
-            match = pattern.exec(sentence);
-        }
-
-
-        console.log(`You have food to last you for: ${Math.floor(totalCalories / 2000)} days!`);
-
-        for(let product of products){
-            console.log(product);
-        }
-
-    }else {
-        console.log(`You have food to last you for: 0 days!`);
+        products.push(`Item: ${product}, Best before: ${expdate}, Nutrition: ${calories}`);
+        totalCalories += Number(calories);
+        match = pattern.exec(str);
     }
-    
 
+    console.log(`You have food to last you for: ${Math.floor(totalCalories / 2000)} days!`);
 
+    for(let product of products){
+        console.log(product);
+    }
 }
+
 adAstra([
     '#Bread#19/03/21#4000#|Invalid|03/03.20||Apples|08/10/20|200||Carrots|06/08/20|500||Not right|6.8.20|5|'
     ]
     )
+
+    adAstra(['Hello|#Invalid food#19/03/20#450|$5*(@'])
