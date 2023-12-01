@@ -1,33 +1,29 @@
-function oddOccurances(str){
-    let words = str.split(' ');
+function oddOccurrences(str){
 
-    let word = new Map();
-    
+    let words = str.split(' ').map((x) => x.toLowerCase());
+    let occurrences = {};
+
     for(let i = 0; i < words.length;i++){
-        let currentWord = words[i].toLowerCase();
-        let counter = 0;
+        let currentWord = words[i];
 
-        for(let k = 0;k< words.length;k++){
-            let newCurrentWord = words[k].toLowerCase();
-
-            if(currentWord == newCurrentWord){
-                counter++;
-            }
+        if(occurrences.hasOwnProperty(currentWord)){
+            occurrences[currentWord] += 1;
+        }else {
+            occurrences[currentWord] = 1;
         }
 
-        word.set(currentWord,counter);
-    }
-let arr = [];
-    for(let [key,value] of word){
-
-        if(value % 2 !== 0){
-            arr.push(key);
-        }
-        
     }
 
-    console.log(arr.join(' '));
+    let sorted = Object.entries(occurrences).sort((a,b) => b[1] - a[1]).filter((x) => x[1] % 2 !== 0);
+
+    let bufferWords = '';
+    for(let value of Object.values(sorted)){
+        bufferWords += ` ${value[0]}`
+    }
+    
+    console.log(bufferWords);
 
 }
 
-oddOccurances('Java C# Php PHP Java PhP 3 C# 3 1 5 C#')
+oddOccurrences('Java C# Php PHP Java PhP 3 C# 3 1 5 C#');
+oddOccurrences('Cake IS SWEET is Soft CAKE sweet Food');
