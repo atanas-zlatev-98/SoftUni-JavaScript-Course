@@ -35,3 +35,21 @@ function extract2(arr) {
 console.log(extract2([1, 3, 8, 4, 10, 12, 3, 2, 24]));
 console.log(extract2([1, 2, 3, 4]));
 console.log(extract2([20, 20, 3, 2, 15, 6, 1]));
+
+console.log("-------------");
+
+function extract3(arr) {
+    let biggestOne = Number.MIN_SAFE_INTEGER;
+
+    return arr.reduce((acc,el) => {
+        if(el >= biggestOne){
+            biggestOne = el;
+            acc.push(biggestOne);
+        }
+        return acc;
+    }, []);
+  }
+  
+  console.log(extract3([1, 3, 8, 4, 10, 12, 3, 2, 24]));
+  console.log(extract3([1, 2, 3, 4]));
+  console.log(extract3([20, 20, 3, 2, 15, 6, 1]));
