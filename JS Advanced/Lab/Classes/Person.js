@@ -12,9 +12,9 @@ class Person {
     }
 
     toString(){
-        return `${this.firstName} ${this.lastName} (age: ${this.age}, email:${this.email})`
+        return `${this.firstName} ${this.lastName} (age: ${this.age}, email: ${this.email})`
     }
 }
 
-const myPerson = new Person('John','Smith',32,'john@abv.bg')
+const myPerson = new Person("Peter", "Marinov", 18, "pesho18@abv.bg");
 console.log(myPerson.toString());
