@@ -1,10 +1,8 @@
 function validate() {
+
   const submitBtn = document.querySelector("#submit");
-
   const userNameRef = document.querySelector("#username");
-
   const emailRef = document.querySelector("#email");
-
   const passwordRef = document.querySelector("#password");
   const confirmPasswordRef = document.querySelector("#confirm-password");
 
@@ -28,6 +26,7 @@ function validate() {
   });
 
   function gatherInfo() {
+
     const userNameValue = userNameRef.value;
     const emailValue = emailRef.value;
     const passwordValue = passwordRef.value;
@@ -64,6 +63,7 @@ function validate() {
   }
 
   function checkUsername(username) {
+
     let usernamePatterns = /^[A-Za-z0-9]{3,20}$/;
 
     if (username.match(usernamePatterns)) {
@@ -76,6 +76,7 @@ function validate() {
   }
 
   function checkEmail(email) {
+    
     let emailPattern = /^[^@.]+@[^@]*\.[^@]*$/;
 
     if (email.match(emailPattern)) {
