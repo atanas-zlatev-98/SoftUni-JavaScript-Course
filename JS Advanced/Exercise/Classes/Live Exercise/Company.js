@@ -8,9 +8,7 @@ class Company {
 
         salary = Number(salary);
 
-        if(!name || !salary || !position || !department){
-            throw new Error('Invalid Input!');
-        }else if(salary < 0){
+        if(!name || !salary || !position || !department || salary < 0){
             throw new Error('Invalid Input!');
         }
 
@@ -46,6 +44,7 @@ class Company {
 
     _updateDepartmentInfo(department,salary){
         let currentDepartment = this.department[department];
+        
         currentDepartment.sumSalary += salary;
         currentDepartment.avg = currentDepartment.sumSalary / currentDepartment.employees.length;
     }
