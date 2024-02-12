@@ -1,0 +1,16 @@
+{
+  "name": "js-advanced-regular-exam---18-february-2023",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "findApartment.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^5.0.3",
+    "mocha": "^10.3.0"
+  }
+}
