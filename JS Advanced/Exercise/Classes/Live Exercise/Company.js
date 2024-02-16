@@ -9,7 +9,7 @@ class Company {
         salary = Number(salary);
 
         if(!name || !salary || !position || !department || salary < 0){
-            throw new Error('Invalid Input!');
+            throw new Error('Invalid input!');
         }
 
         if(!this.department[department]){
