@@ -57,14 +57,14 @@ async function lockedProfile() {
     const unlockInput = createInput("radio", data.username, "unlock");
     const br = create("br");
     const hr = create("hr");
-    const labelUsername = create("label", "Username");
+    const labelUsername = create("label", "",'Username');
     const userInp = createInput("text", data.username, data.username, false, true);
     const showBtn = document.createElement('button');
     showBtn.textContent = 'Show more';
     const hiddenDiv = create("div");
-    const labelEmail = create("label", "Email");
+    const labelEmail = create("label", "",'Email:');
     const inputEmail = createInput("email", data.email, data.email, false, true);
-    const labelAge = create("label", "Age");
+    const labelAge = create("label", "",'Age:');
     const inputAge = createInput("email", data.age, data.age, false, true);
 
     profile.appendChild(imgRef);
@@ -76,9 +76,13 @@ async function lockedProfile() {
     profile.appendChild(hr);
     profile.appendChild(labelUsername);
     profile.appendChild(userInp);
+    hiddenDiv.appendChild(create('hr'));
     hiddenDiv.appendChild(labelEmail);
+    hiddenDiv.appendChild(create('br'));
     hiddenDiv.appendChild(inputEmail);
+    hiddenDiv.appendChild(create('br'));
     hiddenDiv.appendChild(labelAge);
+    hiddenDiv.appendChild(create('br'));
     hiddenDiv.appendChild(inputAge);
     profile.appendChild(hiddenDiv);
     profile.appendChild(showBtn);

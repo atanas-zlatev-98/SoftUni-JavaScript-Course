@@ -1,60 +1,67 @@
-async function attachEvents() {
-  const btnLoadPosts = document.getElementById("btnLoadPosts");
-  const btnViewPosts = document.getElementById("btnViewPost");
-  const postTitle = document.getElementById("post-title");
-  const postBody = document.getElementById("post-body");
-  const commentSection = document.getElementById("post-comments");
+function attachEvents() {
+  //Get DOM elements
+  let postsSelect = document.querySelector('select#posts');
+  let btnLoadPosts = document.getElementById('btnLoadPosts');
+  let btnViewPost = document.getElementById('btnViewPost');
+  let postTitle = document.getElementById('post-title');
+  let postContent = document.getElementById('post-body');
 
-  const select = document.querySelector("#posts");
 
-  btnLoadPosts.addEventListener("click", loadPost);
-  btnViewPosts.addEventListener("click", viewPost);
+  //Add event listeners
+  btnLoadPosts.addEventListener('click', handleLoadPosts);
+  btnViewPost.addEventListener('click', handleViewPost);
+  let commonData;
 
-  async function loadPost() {
-    select.textContent = "";
+  function handleLoadPosts() {
+      //Get posts
+      fetch('http://localhost:3030/jsonstore/blog/posts')
+          .then(res => res.json())
+          .then(data => addPosts(data));
 
-    const postReponse = await fetch("http://localhost:3030/jsonstore/blog/posts");
-    const dataPost = await postReponse.json();
+      function addPosts(data) {
+          commonData = data;
 
-    for (let data of Object.values(dataPost)) {
-      const element = create("option", data.title);
-      element.setAttribute("id", data.id);
-      select.appendChild(element);
-    }
+          postsSelect.innerHTML = '';
+
+          for (let [id, postInfo] of Object.entries(data)) {
+              //Create option
+              let option = document.createElement('option');
+              option.value = id;
+              option.textContent = postInfo.title;
+              option.dataset.body = postInfo.body;
+              postsSelect.appendChild(option);
+          }
+      }
   }
 
-  async function viewPost() {
-    commentSection.textContent = "";
-    const id = select.options[select.selectedIndex].id;
+  function handleViewPost() {
+      //Get post id
+      let selectedPostId = document.getElementById('posts').value;
 
-    const postReponseView = await fetch(
-      `http://localhost:3030/jsonstore/blog/posts/` + id
-    );
-    const dataPostView = await postReponseView.json();
+      postTitle.textContent = commonData[selectedPostId].title;
+      postContent.textContent = commonData[selectedPostId].body;
 
-    const commentsRespose = await fetch(
-      "http://localhost:3030/jsonstore/blog/comments"
-    );
-    const commentsResposeData = await commentsRespose.json();
 
-    const comments = Object.values(commentsResposeData).filter((x) => x.postId == id);
+      //Fetch comments
+      fetch('http://localhost:3030/jsonstore/blog/comments')
+          .then(res => res.json())
+          .then(data => handleComments(data));
 
-    postTitle.textContent = dataPostView.title;
-    postBody.textContent = dataPostView.body;
+      //Handle comments
+      function handleComments(data) {
+          let commentsUl = document.getElementById('post-comments');
+          commentsUl.innerHTML = '';
 
-    for (let comment of comments) {
-      const li = document.createElement("li");
-      li.textContent = comment.text;
-      li.setAttribute('id',comment.id);
-      commentSection.appendChild(li);
-    }
-  }
-
-  function create(type, content) {
-    const createdElement = document.createElement(type);
-    createdElement.textContent = content;
-
-    return createdElement;
+          for (let [commentInfo] of Object.entries(data)) {
+              if (commentInfo.postId == selectedPostId) {
+                  //Create comment li
+                  let li = document.createElement('li');
+                  li.id = commentInfo.id
+                  li.textContent = commentInfo.text;
+                  commentsUl.appendChild(li);
+              }
+          }
+      }
   }
 }
 
